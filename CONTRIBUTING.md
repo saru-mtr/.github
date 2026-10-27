@@ -1,6 +1,6 @@
 # Como contribuir
 
-Este arquivo vale para todos os repositórios da organização SARU Systems Lab que não
+Este arquivo vale para todos os repositórios da organização SARU Motorsport Technologies (saru-mtr) que não
 tiverem um `CONTRIBUTING.md` próprio.
 
 ## Passo a passo
@@ -9,56 +9,46 @@ tiverem um `CONTRIBUTING.md` próprio.
    rótulo (`E`, `PIL`, `CAM`, `ENG`, `EQP`, `ALU`).
 2. Crie a branch a partir da issue, já com o nome no padrão `<prefixo>/<numero>-<tema>`,
    em minúsculas e com hífen entre palavras, e mude para ela:
-   `gh issue develop <numero> --name pil/42-corte-de-volta-por-gps --checkout`.
+   `gh issue develop <numero> --name pil/42-corte-de-volta-por-gps --checkout` (ou via `wt novo`).
 3. Confira com `git branch --show-current` que está na branch certa antes do primeiro commit.
 4. Faça commits em Conventional Commits, em português, até 72 caracteres no título
-   (exemplo: `feat: adiciona corte de volta por GPS`).
-5. Abra o pull request com `Closes #<numero>` na descrição, para a issue fechar
-   automaticamente quando o PR for mesclado.
-6. Espere a CI ficar verde e a revisão de outra pessoa. Nenhum agente de IA aprova ou
-   mescla pull request.
-7. Mescle por squash: um commit só na `main` e histórico linear (decisão de 2026-09-13).
-8. Apague a branch depois do merge.
+   (exemplo: `feat(leitor): adiciona corte de volta por GPS`).
+5. Abra o pull request com `Closes #<numero>` (para fechar a issue automaticamente no merge) ou `Refs #<numero>` (quando a issue aguardar conferência manual), para vincular a tarefa.
+6. Espere a CI ficar verde e sem conflitos. O merge é por squash; o agente mescla o próprio PR
+   com CI verde e sem conflito (regra global do ecossistema).
+7. Apague a branch após o merge.
 
 ## Definition of Ready
 
 Uma issue entra em desenvolvimento quando, nesta ordem:
 
-1. Tem id com prefixo e está no catálogo da família.
+1. Tem id com prefixo e está no catálogo da família ou da empresa.
 2. Tem fonte registrada.
-3. Diz para quem e para quê, e aponta um objetivo.
+3. Diz para quem e para quê, e aponta um objetivo claro.
 4. Tem pelo menos um critério de aceitação em Dado, Quando, Então.
 5. As dependências estão listadas e nenhuma está bloqueada.
-6. Cabe em uma semana de sprint; senão, é quebrada antes de entrar.
-7. Quem vai fazer entendeu o escopo; dúvida vira pergunta a Vitor antes de começar, não
-   no meio.
-8. Se toca física, calibração ou validação, a regra já foi validada com Vitor contra o
-   acervo; se toca formato de arquivo, o arquivo real está anexado à issue.
+6. Quem vai fazer entendeu o escopo; dúvida bloqueante vira pergunta a Vitor antes de começar.
+7. Se toca física, calibração ou validação, a regra segue E-RN-02 (número de física só com tabela de medição comprovada contra o acervo).
 
 ## Definition of Done
 
 Um item está pronto quando:
 
-1. Cada critério de aceitação foi verificado por teste automatizado ou demonstração
-   registrada.
+1. Cada critério de aceitação foi verificado por teste automatizado ou demonstração registrada.
 2. Lint e testes estão verdes na CI.
-3. O catálogo e a matriz de rastreabilidade da família foram atualizados no mesmo PR.
-4. A documentação de uso foi atualizada, se a interface mudou.
-5. O PR foi revisado por outra pessoa; nenhum push direto na `main`.
-6. Se o item toca o núcleo compartilhado, o catálogo da empresa também foi atualizado.
-7. O incremento foi demonstrado e aceito: o teste verde prova que funciona, não que é o
-   que se queria.
+3. A documentação (`decisions.md`, ADR ou matriz de rastreabilidade) foi atualizada no mesmo PR.
+4. O PR foi mesclado por squash na `main`.
+5. Nenhum push direto na `main`.
 
 ## Uso de IA
 
-Toda contribuição gerada majoritariamente por um agente de IA leva, na descrição do
-pull request, a marca do agente e o nome de quem revisou (exemplo: gerado por Claude
-Code, revisado por Vitor Toledo). Nenhum agente de IA aprova ou mescla pull request
-sozinho. A revisão humana antes do merge é sempre obrigatória, sem exceção para
-contribuição de agente.
+Toda contribuição gerada por um agente de IA leva, na descrição do pull request, a identificação
+do agente e a issue de referência. O agente mescla o próprio PR quando a CI estiver verde e sem conflito.
+Ações destrutivas, exclusões em massa ou alterações de permissões globais continuam exigindo
+aprovação humana prévia.
 
 ## Segredo
 
-Cada repositório lista suas variáveis de ambiente em `.env.example`, sem valor real.
-O arquivo `.env` nunca é commitado; fica sempre em `.gitignore`. Segredo de produção
-mora em GitHub Secrets, nunca em arquivo de configuração do repositório.
+Cada repositório lista suas variáveis de ambiente em `.env.example`, sem valores reais.
+O arquivo `.env` nunca é commitado (fica sempre em `.gitignore`). Segredos de produção
+ficam nos GitHub Secrets da organização.
