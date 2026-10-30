@@ -6,6 +6,10 @@ Descreva o que mudou e por quê.
 
 Closes #
 
+## Antes e depois
+
+Tabela em Markdown com o resultado antes e depois, medido com gravação real (valor, comando, arquivo). Em tela, captura PNG anexada. Sem página HTML.
+
 ## Como revisar
 
 Comandos para rodar localmente e o que checar no resultado.
